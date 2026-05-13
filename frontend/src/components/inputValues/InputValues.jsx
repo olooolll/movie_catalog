@@ -1,19 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 export default function InputValues(props) {
-    const [value, setValue] = useState('');
-    const onChange = e => {
-        setValue(e.target.value);
-    }
 
     return (
         <input
+            type='text'
             placeholder={props.placeholder}
-            onChange={onChange}
             value={props.value}
-        >
-
-        </input>
-
-    )
+            onChange={(e) =>
+                props.onAlter(props.field, e.target.value)
+            }
+        />
+    );
 }

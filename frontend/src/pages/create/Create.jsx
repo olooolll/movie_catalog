@@ -1,12 +1,11 @@
 import React from 'react';
-import Form from '@/components/Form/Form.jsx';
+import Form from '@/components/form/Form.jsx';
 import {Link} from "react-router-dom";
 import InputValues from "@/components/inputValues/InputValues.jsx";
 
 export default function Create(props) {
-    const submit = (e) => {
-        e.preventDefault();
-        console.log(e)
+    const submit = (data) => {
+
     }
 
 
@@ -27,15 +26,25 @@ export default function Create(props) {
 
             <Form
                 onSubmit={submit}
-                submitPlaceHolder='Adicionar'
-                states={{
-                    name: ''
+                initialState={{
+                    name: '',
+                    gerne: '',
+                    yer: ''
                 }}
             >
                 <InputValues
+                    field='name'
                     placeholder='Nome'
-                    onAlter={value => onAlter('name', value)}
                 />
+                <InputValues
+                    field='gerne'
+                    placeholder='Genero'
+                />
+                <InputValues
+                    field='yer'
+                    placeholder='Ano'
+                />
+
             </Form>
 
         </main>

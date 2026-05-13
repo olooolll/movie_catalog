@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
-import './Form.css'
+import { useState, Children, cloneElement } from 'react';
+import './Form.css';
 
 export default function Form(props) {
-    const [form, setForm] = useState(props.states)
+    const [form, setForm] = useState(props.initialState);
 
     const onAlter = (key, value) => {
-        setForm(...prev => ({
+        setForm(prev => ({
             ...prev,
             [key]: value
-            })
-        )
-    }
+        }));
+    };
 
-    return(
-        <form onSubmit=''>
-            {props.children}
-            <button type='submit'>{props.submitPlaceHolder}</button>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        props.onSubmit(form);
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+
+            {
+                Children.map(props.children, child => {
+                    return cloneElement(child, {
+                        value: form[child.props.field] || '',
+                        onAlter: onAlter
+                    });
+                })
+            }
+
+            <button type='submit'>
+                {props.submitPlaceHolder}
+            </button>
+
         </form>
     );
-
 }
