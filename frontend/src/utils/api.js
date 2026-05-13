@@ -17,7 +17,7 @@ export async function getMovies() {
 
         const processedData = res.data.map((movie) => {
             try {
-                let rawHex = movie.image.replace(/^\\x/, '');
+                let rawHex = movie.imagem.replace(/^\\x/, '');
 
                 let hexString = "";
                 for (let i = 0; i < rawHex.length; i += 2) {
@@ -29,9 +29,9 @@ export async function getMovies() {
                     binary += String.fromCharCode(parseInt(hexString.substr(i, 2), 16));
                 }
 
-                movie.image = `data:image/png;base64,${btoa(binary)}`;
+                movie.imagem = `data:image/png;base64,${btoa(binary)}`;
             } catch (e) {
-                movie.image = null;
+                movie.imagem = null;
             }
             return movie;
         });

@@ -38,31 +38,31 @@ export default function Create(props) {
             <Form
                 onSubmit={submit}
                 initialState={{
-                    name: '',
-                    genre: '',
-                    year: '',
-                    image: null
+                    nome: '',
+                    genero: '',
+                    ano: '',
+                    imagem: null
                 }}
                 submitPlaceHolder='Adicionar'
             >
 
                 <InputValues
-                    field='name'
+                    field='nome'
                     placeholder='Nome'
                 />
 
                 <InputValues
-                    field='genre'
+                    field='genero'
                     placeholder='Genero'
                 />
 
                 <InputValues
-                    field='year'
+                    field='ano'
                     placeholder='Ano'
                 />
 
                 <InputImage
-                    field='image'
+                    field='imagem'
                 />
 
             </Form>
