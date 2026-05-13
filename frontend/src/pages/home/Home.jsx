@@ -1,5 +1,5 @@
 import react, {useEffect, useState} from 'react';
-import getMovies from '@/utils/api.js'
+import { getMovies } from '@/utils/api.js'
 import {Link} from "react-router-dom";
 
 

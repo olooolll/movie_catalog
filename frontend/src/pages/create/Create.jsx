@@ -3,10 +3,20 @@ import Form from '@/components/form/Form.jsx';
 import {Link} from "react-router-dom";
 import InputValues from "@/components/inputValues/InputValues.jsx";
 import InputImage from "@/components/inputImage/InputImage.jsx";
+import { setMovie } from '@/utils/api.js';
 
 export default function Create(props) {
-    const submit = (data) => {
-        console.log(data);
+    async function submit(movie){
+        for(let data in movie){
+            if( movie[data] === '' ||
+                movie[data] === null ||
+                movie[data] === undefined
+            ){
+                // aparacer o alerta
+                return false;
+            }
+        }
+        const res = await setMovie(movie)
     }
 
 
@@ -29,23 +39,28 @@ export default function Create(props) {
                 onSubmit={submit}
                 initialState={{
                     name: '',
-                    gerne: '',
-                    yer: '',
+                    genre: '',
+                    year: '',
                     image: null
                 }}
+                submitPlaceHolder='Adicionar'
             >
+
                 <InputValues
                     field='name'
                     placeholder='Nome'
                 />
+
                 <InputValues
-                    field='gerne'
+                    field='genre'
                     placeholder='Genero'
                 />
+
                 <InputValues
-                    field='yer'
+                    field='year'
                     placeholder='Ano'
                 />
+
                 <InputImage
                     field='image'
                 />
