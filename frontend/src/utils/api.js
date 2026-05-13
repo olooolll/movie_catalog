@@ -30,7 +30,7 @@ export async function getMovies() {
                 }
 
                 movie.imagem = `data:image/png;base64,${btoa(binary)}`;
-            } catch (e) {
+            } catch (err) {
                 movie.imagem = null;
             }
             return movie;
@@ -73,6 +73,32 @@ export async function setMovie(movie){
         return {
             status: 400,
             data: { 'error': 'format not supported' }
+        }
+    }
+}
+
+export async function deleteMovie(movieId){
+    try{
+        const res = await axios.delete(
+            `${URL}/rest/v1/movies?id=eq.${movieId}`,
+            {
+                headers: {
+                    'apikey': KEY,
+                    'Authorization': `Bearer ${KEY}`,
+                }
+            }
+        )
+        return {
+            'status': 204,
+            'data': `movie id equal ${movieId} deleted`
+        }
+
+    } catch(err){
+        return {
+            'status': 401,
+            'data': {
+                'error': 'movie cannot be delete'
+            }
         }
     }
 }

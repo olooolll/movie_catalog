@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getMovies } from "@/utils/api.js";
+import { getMovies, deleteMovie } from "@/utils/api.js";
 
 export default function Delete() {
     const [movies, setMovies] = useState([]);
@@ -19,7 +19,16 @@ export default function Delete() {
         }
         loadMovies();
     }, []);
-    
+
+
+    async function selectMovie(id){
+        const res = await deleteMovie(id);
+        if(res.status === 204){
+            setMovies(movies.filter(movie => movie.id !== id))
+        } else{
+            //Alert
+        }
+    }
 
     return (
         <main>
@@ -46,7 +55,7 @@ export default function Delete() {
                         ))}
 
                         <td>
-                            <button onClick={deleteMovie}>Deletar</button>
+                            <button onClick={() => selectMovie(movie.id)}>Deletar</button>
                         </td>
 
                     </tr>
