@@ -2,10 +2,11 @@ import React from 'react';
 import Form from '@/components/form/Form.jsx';
 import {Link} from "react-router-dom";
 import InputValues from "@/components/inputValues/InputValues.jsx";
+import InputImage from "@/components/inputImage/InputImage.jsx";
 
 export default function Create(props) {
     const submit = (data) => {
-
+        console.log(data);
     }
 
 
@@ -29,7 +30,8 @@ export default function Create(props) {
                 initialState={{
                     name: '',
                     gerne: '',
-                    yer: ''
+                    yer: '',
+                    image: null
                 }}
             >
                 <InputValues
@@ -43,6 +45,9 @@ export default function Create(props) {
                 <InputValues
                     field='yer'
                     placeholder='Ano'
+                />
+                <InputImage
+                    field='image'
                 />
 
             </Form>
