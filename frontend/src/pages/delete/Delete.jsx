@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getMovies, deleteMovie } from "@/utils/api.js";
+import {Link} from "react-router-dom";
+import NavLink from "@/components/navLink/NavLink.jsx";
 
 export default function Delete() {
     const [movies, setMovies] = useState([]);
@@ -32,6 +34,12 @@ export default function Delete() {
 
     return (
         <main>
+            <NavLink pages={[
+                {path: '/criar', label: 'Criar'},
+                {path: '/alterar', label: 'Alterar'},
+                {path: '/', label: 'Inicio'}
+            ]}/>
+
             <table>
                 <thead>
                 <tr>

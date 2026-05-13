@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import InputValues from "@/components/inputValues/InputValues.jsx";
 import InputImage from "@/components/inputImage/InputImage.jsx";
 import { setMovie } from '@/utils/api.js';
+import NavLink from "@/components/navLink/NavLink.jsx";
 
 export default function Create(props) {
     async function submit(movie){
@@ -22,18 +23,11 @@ export default function Create(props) {
 
     return (
         <main>
-            <nav>
-                <Link to={'/'}>
-                    <button>Inicio</button>
-                </Link>
-                <Link to={'/alterar'}>
-                    <button>Alterar</button>
-                </Link>
-                <Link to={'/deletar'}>
-                    <button>Deletar</button>
-                </Link>
-
-            </nav>
+            <NavLink pages={[
+                {path: '/', label: 'Inicio'},
+                {path: '/alterar', label: 'Alterar'},
+                {path: '/deletar', label: 'Deletar'}
+            ]}/>
 
             <Form
                 onSubmit={submit}

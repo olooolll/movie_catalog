@@ -1,6 +1,7 @@
-import react, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { getMovies } from '@/utils/api.js'
 import {Link} from "react-router-dom";
+import NavLink from "@/components/navLink/NavLink.jsx";
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     useEffect(() => {
         async function loadMovies() {
             const movies = await getMovies();
+            console.log(movies);
             if (movies.status === 200){
                 setMovies(movies.data);
             }
@@ -20,26 +22,18 @@ export default function Home() {
 
     return (
         <main>
-            <nav>
-
-                <Link to={'/criar'}>
-                    <button>Adicionar</button>
-                </Link>
-                <Link to={'/alterar'}>
-                    <button>Alterar</button>
-                </Link>
-                <Link to={'/deletar'}>
-                    <button>Deletar</button>
-                </Link>
-
-            </nav>
+            <NavLink pages={[
+                {path: '/criar', label: 'Criar'},
+                {path: '/alterar', label: 'Alterar'},
+                {path: '/deletar', label: 'Deletar'}
+            ]}/>
 
             {movies.map((movie, index) => (
                 <div key={index}>
-                    <img src={movie.image} alt={movie.title}/>
-                    <p>{movie.name}</p>
-                    <p>{movie.genre}</p>
-                    <p>{movie.yer}</p>
+                    <img src={movie.imagem} alt={movie.title}/>
+                    <p>{movie.nome}</p>
+                    <p>{movie.genero}</p>
+                    <p>{movie.ano}</p>
                 </div>
             ))}
         </main>
