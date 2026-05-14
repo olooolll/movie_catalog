@@ -1,17 +1,27 @@
 import React from 'react';
-import Form from '@/components/form/Form.jsx'
 import NavLink from '@/components/navLink/NavLink.jsx'
+import TableMovies from "@/components/tableProduct/TableMovies.jsx";
 
 export default function Alter() {
-    return (
-        <main>
+    const updateMovie = (movie) => {console.log(movie)};
 
+    return (
+        <>
             <NavLink pages={[
                 {path: '/', label: 'Inicio'},
                 {path: '/criar', label: 'Criar'},
                 {path: '/deletar', label: 'Deletar'}
             ]}/>
 
-        </main>
+            <main>
+
+                <TableMovies
+                    header='Opção'
+                    body='Alterar'
+                    selectMovie={updateMovie}
+                />
+
+            </main>
+        </>
     )
 }

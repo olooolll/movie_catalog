@@ -1,28 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getMovies, deleteMovie } from "@/utils/api.js";
-import {Link} from "react-router-dom";
-import NavLink from "@/components/navLink/NavLink.jsx";
+import { deleteMovie } from '@/utils/api.js';
+import NavLink from '@/components/navLink/NavLink.jsx';
+import TableMovies, { setMovies } from '@/components/tableProduct/TableMovies.jsx';
 
 export default function Delete() {
-    const [movies, setMovies] = useState([]);
-    const [columns, setColumns] = useState([]); // Nome no plural é melhor
-
-    useEffect(() => {
-        async function loadMovies() {
-            const res = await getMovies();
-            if (res.status === 200) {
-                setMovies(res.data);
-
-                if (res.data.length > 0) {
-                    const chaves = Object.keys(res.data[0]);
-                    setColumns(chaves);
-                }
-            }
-        }
-        loadMovies();
-    }, []);
-
-
     async function selectMovie(id){
         const res = await deleteMovie(id);
         if(res.status === 204){
@@ -31,45 +11,23 @@ export default function Delete() {
             //Alert
         }
     }
-
     return (
-        <main>
+        <>
             <NavLink pages={[
                 {path: '/criar', label: 'Criar'},
                 {path: '/alterar', label: 'Alterar'},
                 {path: '/', label: 'Inicio'}
             ]}/>
 
-            <table>
-                <thead>
-                <tr>
-                    {columns.map((colName, index) => (
-                        <th key={index}>{colName}</th>
-                    ))}
-                    <th>apagar</th>
-                </tr>
-                </thead>
-                <tbody>
-                {movies.map((movie, index) => (
-                    <tr key={index} id={movie.id}>
-                        {columns.map((colName, i) => (
-                            <td key={i}>
-                                {colName === 'imagem' ? (
-                                    <img src={movie[colName]} alt="movie" width="50" />
-                                ) : (
-                                    movie[colName]
-                                )}
-                            </td>
-                        ))}
+            <main>
 
-                        <td>
-                            <button onClick={() => selectMovie(movie.id)}>Deletar</button>
-                        </td>
+                <TableMovies
+                    header='Opção'
+                    body='Deletar'
+                    selectMovie={selectMovie}
+                    />
 
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </main>
+            </main>
+        </>
     );
 }
