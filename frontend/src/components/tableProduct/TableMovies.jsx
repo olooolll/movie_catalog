@@ -1,5 +1,6 @@
 import {getMovies} from '@/utils/api.js';
 import React, { useState,useEffect } from 'react';
+import './TableMovies.css'
 
 export default function TableMovies(props) {
     const [movies, setMovies] = useState([]);

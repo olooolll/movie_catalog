@@ -1,0 +1,100 @@
+/* Container Principal - Ocupa quase toda a largura */
+.home-container {
+    width: 95%;
+    max-width: 1600px; /* Aumentado para imagens maiores */
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.home-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.retro-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--popcorn-yellow);
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 var(--curtain-red);
+}
+
+/* --- FLEX SYSTEM --- */
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card de Filme */
+.movie-card {
+    flex: 1 1 250px; /* Permite crescer conforme o layout */
+    max-width: 320px; /* Limite para não deformar em telas ultra-wide */
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Moldura e Imagem */
+.poster-wrapper {
+    position: relative;
+    border: 5px solid #222;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 8px 8px 0 var(--curtain-red);
+}
+
+.poster-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    transition: transform 0.5s ease;
+}
+
+/* Ano sobreposto à imagem */
+.badge-year {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--curtain-red);
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid var(--popcorn-yellow);
+    z-index: 2;
+}
+
+/* Info do Filme */
+.movie-info {
+    padding: 15px 5px;
+    text-align: center;
+}
+
+.movie-info h3 {
+    font-size: 1.1rem;
+    color: var(--popcorn-yellow);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.movie-info span {
+    font-size: 0.85rem;
+    color: var(--film-grain-white);
+    opacity: 0.8;
+}
+
+/* Efeitos de Hover */
+.movie-card:hover {
+    transform: scale(1.03);
+}
+
+.movie-card:hover img {
+    transform: scale(1.1);
+}
+
+.movie-card:hover .poster-wrapper {
+    border-color: var(--popcorn-yellow);
+}

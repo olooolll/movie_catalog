@@ -1,0 +1,97 @@
+/* 1. Variáveis do Tema (Cinema Retrô) */
+:root {
+    --cine-black: #1a1a1a;
+    --curtain-red: #8b0000;
+    --popcorn-yellow: #f4c430;
+    --film-grain-white: #e5e5e5;
+    --neon-blue: #00f3ff;
+}
+
+/* 2. Reset e Fundo */
+body {
+    background-color: var(--cine-black) !important;
+    color: var(--film-grain-white) !important;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* 3. Tipografia Estilo Letreiro */
+h1, h2, h3, .display-3, .card-title {
+    font-family: 'Arial Black', sans-serif !important;
+    text-transform: uppercase;
+    color: var(--popcorn-yellow) !important;
+    text-shadow: 3px 3px 0px var(--curtain-red);
+    letter-spacing: 2px;
+}
+
+/* 4. Customização de Componentes Bootstrap */
+
+/* Botões Retrô */
+.btn-outline-secondary {
+    color: var(--popcorn-yellow) !important;
+    border: 2px solid var(--popcorn-yellow) !important;
+    border-radius: 0 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--popcorn-yellow) !important;
+    color: var(--cine-black) !important;
+    box-shadow: 4px 4px 0px var(--neon-blue);
+    transform: translate(-2px, -2px);
+}
+
+/* Cards (Cartazes) */
+.card {
+    background-color: #222 !important;
+    border: 1px solid #333 !important;
+    border-radius: 0 !important;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: var(--popcorn-yellow) !important;
+    box-shadow: 0 0 15px rgba(244, 196, 48, 0.3) !important;
+}
+
+.card-img-top {
+    border-radius: 0 !important;
+    filter: sepia(30%) contrast(110%);
+    border-bottom: 4px solid var(--curtain-red);
+}
+
+/* Badge (Etiqueta de Gênero) */
+.badge.bg-secondary {
+    background-color: var(--curtain-red) !important;
+    border-radius: 0;
+    font-weight: normal;
+}
+
+/* 5. Efeito de Interferência de TV/Filme (Overlay) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Linhas horizontais simulando scanlines de TV antiga */
+    background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.08) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 9999;
+    pointer-events: none; /* Importante para conseguir clicar no site */
+    opacity: 0.6;
+}
+
+/* Linha divisória */
+hr {
+    border-top: 2px dashed var(--popcorn-yellow) !important;
+    opacity: 0.5;
+}

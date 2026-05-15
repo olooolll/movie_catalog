@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from '@/components/form/Form.jsx';
-import {Link} from "react-router-dom";
 import InputValues from "@/components/inputValues/InputValues.jsx";
 import InputImage from "@/components/inputImage/InputImage.jsx";
 import { setMovie } from '@/utils/api.js';
@@ -22,46 +21,50 @@ export default function Create(props) {
 
 
     return (
-        <main>
+        <>
             <NavLink pages={[
                 {path: '/', label: 'Inicio'},
                 {path: '/alterar', label: 'Alterar'},
                 {path: '/deletar', label: 'Deletar'}
             ]}/>
 
-            <Form
-                onSubmit={submit}
-                initialState={{
-                    nome: '',
-                    genero: '',
-                    ano: '',
-                    imagem: null
-                }}
-                submitPlaceHolder='Adicionar'
-            >
+            <main>
 
-                <InputValues
-                    field='nome'
-                    placeholder='Nome'
-                />
 
-                <InputValues
-                    field='genero'
-                    placeholder='Genero'
-                />
+                <Form
+                    onSubmit={submit}
+                    initialState={{
+                        nome: '',
+                        genero: '',
+                        ano: '',
+                        imagem: null
+                    }}
+                    submitPlaceHolder='Adicionar'
+                >
 
-                <InputValues
-                    field='ano'
-                    placeholder='Ano'
-                />
+                    <InputValues
+                        field='nome'
+                        placeholder='Nome'
+                    />
 
-                <InputImage
-                    field='imagem'
-                />
+                    <InputValues
+                        field='genero'
+                        placeholder='Genero'
+                    />
 
-            </Form>
+                    <InputValues
+                        field='ano'
+                        placeholder='Ano'
+                    />
 
-        </main>
+                    <InputImage
+                        field='imagem'
+                    />
+
+                </Form>
+
+            </main>
+        </>
 
     )
 

@@ -1,0 +1,67 @@
+.justify-content-center {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Container do Menu */
+.nav-marquee {
+    background: #111;
+    border-top: 4px solid var(--curtain-red);
+    border-bottom: 4px solid var(--curtain-red);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    margin-bottom: 2rem;
+}
+
+/* Botão Estilo Letreiro Luminoso */
+.marquee-btn {
+    background-color: #222;
+    color: var(--popcorn-yellow);
+    border: 3px solid #444;
+    padding: 10px 25px;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Luzes (Pontinhos Amarelos) */
+.dot-light {
+    width: 6px;
+    height: 6px;
+    background-color: var(--popcorn-yellow);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--popcorn-yellow);
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+/* Alternar o pisca-pisca das luzes */
+.marquee-btn span:last-child {
+    animation-delay: 0.5s;
+}
+
+/* Efeito de Hover: "Acender o letreiro" */
+.marquee-btn:hover {
+    background-color: var(--popcorn-yellow);
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 20px var(--popcorn-yellow);
+    transform: scale(1.05);
+}
+
+.marquee-btn:hover .dot-light {
+    background-color: #000;
+    box-shadow: none;
+}
+
+/* Animação das Luzes */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}

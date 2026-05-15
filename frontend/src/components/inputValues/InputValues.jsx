@@ -1,9 +1,10 @@
 import React from 'react';
+import './InputValues.css'; // Importação do CSS
 
 export default function InputValues(props) {
-
     return (
         <input
+            className="retro-input" // Adicionado para melhor organização
             type='text'
             placeholder={props.placeholder}
             value={props.value}

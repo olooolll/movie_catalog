@@ -1,0 +1,43 @@
+.file-upload-wrapper {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Esconde o input original feio */
+input[type="file"] {
+    display: none;
+}
+
+/* Estiliza o Label como se fosse o botão */
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: #222;
+    color: var(--popcorn-yellow, #f4c430);
+    border: 2px dashed var(--popcorn-yellow, #f4c430);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.custom-file-upload .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Efeito de Hover - Brilho de Neon */
+.custom-file-upload:hover {
+    background-color: var(--curtain-red, #8b0000);
+    color: #fff;
+    border-style: solid;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+    transform: scale(1.02);
+}
+
+/* Feedback visual quando um arquivo é selecionado (opcional) */
+.custom-file-upload:active {
+    transform: scale(0.98);
+}

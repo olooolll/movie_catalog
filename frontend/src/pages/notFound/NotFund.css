@@ -1,0 +1,84 @@
+/* notfound.css */
+
+/* Container Principal */
+.not-found-container {
+    background: radial-gradient(circle, #1a1a1a 0%, #050505 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e5e5e5;
+    padding: 20px;
+}
+
+/* Título 404 com Efeito Glitch (Cores de Fita VHS) */
+.glitch-404 {
+    font-size: clamp(5rem, 15vw, 10rem);
+    font-family: 'Arial Black', sans-serif;
+    color: #f4c430; /* Amarelo Pipoca */
+    text-shadow: 3px 0 #00f3ff, -3px 0 #8b0000;
+    margin: 0;
+    line-height: 1;
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+/* Subtítulo Estilo Créditos */
+.not-found-container h2 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: #8b0000; /* Vermelho Cortina */
+}
+
+/* Moldura da Imagem (Simulando uma tela de TV antiga) */
+.image-wrapper {
+    background: #000;
+    border: 8px solid #222;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    margin-bottom: 2rem;
+}
+
+.image-wrapper img {
+    max-width: 400px;
+    animation: flicker 0.15s infinite;
+}
+
+/* Botão Rebobinar */
+.btn-rewind {
+    background: transparent;
+    color: #f4c430;
+    border: 2px solid #f4c430;
+    padding: 10px 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-rewind:hover {
+    background: #f4c430;
+    color: #1a1a1a;
+    box-shadow: 0 0 15px #f4c430;
+    transform: translateY(-3px);
+}
+
+/* Animações Retrô */
+@keyframes glitch-anim {
+    0% { transform: translate(0); }
+    1% { transform: translate(-4px, 2px); }
+    2% { transform: translate(4px, -2px); }
+    3% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+@keyframes flicker {
+    0% { opacity: 0.9; }
+    50% { opacity: 1; }
+    100% { opacity: 0.95; }
+}

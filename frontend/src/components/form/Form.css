@@ -1,0 +1,58 @@
+/* Form.css */
+
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #1a1a1a; /* Cinza quase preto */
+    border: 3px solid #222;
+    box-shadow: 15px 15px 0px var(--curtain-red, #8b0000); /* Sombra sólida retrô */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os inputs */
+}
+
+/* Título implícito ou divisória interna */
+form::before {
+    display: block;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: var(--popcorn-yellow, #f4c430);
+    border-bottom: 2px dashed #444;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+/* Estilização do Botão de Submit */
+form button[type='submit'] {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--popcorn-yellow, #f4c430);
+    color: #000;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0px #fff;
+}
+
+form button[type='submit']:hover {
+    background-color: #fff;
+    color: var(--curtain-red, #8b0000);
+    box-shadow: 4px 4px 0px var(--popcorn-yellow, #f4c430);
+    transform: translate(-2px, -2px);
+}
+
+form button[type='submit']:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+/* Ajuste para que os filhos (inputs) ocupem a largura total */
+form > * {
+    width: 100%;
+}
