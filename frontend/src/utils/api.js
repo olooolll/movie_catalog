@@ -49,6 +49,41 @@ export async function getMovies() {
     }
 }
 
+export async function getMovie(movieId, withImg = true) {
+
+    const res = await axios.get(
+        `${URL}/rest/v1/movies`,
+        {
+            headers: {
+                apikey: KEY,
+                Authorization: `Bearer ${KEY}`
+            },
+
+            params: {
+
+                select: withImg
+                    ? '*'
+                    : 'id,nome,genero,ano',
+
+                id: `eq.${movieId}`
+            }
+        }
+    );
+
+    if (res.status === 200) {
+
+        return {
+            status: 200,
+            data: res.data[0]
+        };
+    }
+
+    return {
+        status: 404,
+        data: { 'error': 'Not Found' }
+    }
+}
+
 export async function setMovie(movie){
     try{
 
@@ -100,5 +135,54 @@ export async function deleteMovie(movieId){
                 'error': 'movie cannot be delete'
             }
         }
+    }
+}
+
+export async function updateMovie(movie) {
+
+    try {
+
+        const res = await axios.patch(
+
+            `${URL}/rest/v1/movies`,
+
+            {
+                nome: movie.nome,
+                genero: movie.genero,
+                ano: movie.ano,
+                imagem: movie.imagem
+            },
+
+            {
+                headers: {
+                    apikey: KEY,
+                    Authorization: `Bearer ${KEY}`,
+                    "Content-Type": "application/json",
+                    Prefer: "return=representation"
+                },
+
+                params: {
+                    id: `eq.${movie.id}`
+                }
+            }
+        );
+
+        console.log(res.data);
+        console.log(movie);
+        return {
+            status: res.status,
+            data: res.data
+        };
+
+    } catch (err) {
+
+        console.log(err);
+
+        return {
+            status: 412,
+            data: {
+                error: 'Update failed'
+            }
+        };
     }
 }

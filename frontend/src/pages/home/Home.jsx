@@ -39,7 +39,6 @@ export default function Home() {
                     <p className="retro-subtitle">Selecione um título para começar</p>
                 </div>
 
-                {/* Este container agora controla a grade de filmes */}
                 <section className="movie-grid">
                     {movies.map((movie, index) => (
                         <article key={index} className="movie-card">

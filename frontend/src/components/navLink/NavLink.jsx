@@ -4,7 +4,7 @@ import './NavLink.css'
 
 export default function NavLink(props) {
     return (
-        <nav className="nav-marquee d-flex justify-content-center flex-wrap gap-3 py-4">
+        <nav className="nav-marquee justify-content-center">
             {props.pages.map((page, i) => (
                 <Link to={page.path} key={i} className="text-decoration-none">
                     <button className="marquee-btn">

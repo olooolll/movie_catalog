@@ -1,67 +1,68 @@
 .justify-content-center {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 15px;
 }
 
-/* Container do Menu */
 .nav-marquee {
     background: #111;
-    border-top: 4px solid var(--curtain-red);
-    border-bottom: 4px solid var(--curtain-red);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-top: 4px solid var(--curtain-red, #8b0000);
+    border-bottom: 4px solid var(--curtain-red, #8b0000);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
     margin-bottom: 2rem;
+    width: 100%;
 }
 
-/* Botão Estilo Letreiro Luminoso */
 .marquee-btn {
     background-color: #222;
-    color: var(--popcorn-yellow);
+    color: var(--popcorn-yellow, #f4c430);
     border: 3px solid #444;
     padding: 10px 25px;
     font-family: 'Arial Black', sans-serif;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
     cursor: pointer;
     position: relative;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
-/* Luzes (Pontinhos Amarelos) */
 .dot-light {
     width: 6px;
     height: 6px;
-    background-color: var(--popcorn-yellow);
+    background-color: var(--popcorn-yellow, #f4c430);
     border-radius: 50%;
-    box-shadow: 0 0 5px var(--popcorn-yellow);
+    box-shadow: 0 0 8px var(--popcorn-yellow, #f4c430);
     display: inline-block;
-    animation: blink 1s infinite;
+    animation: blink 1s infinite alternate;
 }
 
-/* Alternar o pisca-pisca das luzes */
 .marquee-btn span:last-child {
     animation-delay: 0.5s;
 }
 
-/* Efeito de Hover: "Acender o letreiro" */
 .marquee-btn:hover {
-    background-color: var(--popcorn-yellow);
+    background-color: var(--popcorn-yellow, #f4c430);
     color: #000;
     border-color: #fff;
-    box-shadow: 0 0 20px var(--popcorn-yellow);
-    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--popcorn-yellow, #f4c430);
+    transform: scale(1.1); /* Um pouco mais de destaque */
 }
 
 .marquee-btn:hover .dot-light {
     background-color: #000;
     box-shadow: none;
+    animation: none; /* Para de piscar quando o botão está acesso */
 }
 
-/* Animação das Luzes */
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    from { opacity: 1; filter: brightness(1.2); }
+    to { opacity: 0.4; filter: brightness(0.7); }
 }
