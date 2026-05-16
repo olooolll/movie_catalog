@@ -26,9 +26,9 @@ export default function Delete() {
     return (
         <>
             <NavLink pages={[
+                {path: '/', label: 'Inicio'},
                 {path: '/criar', label: 'Criar'},
                 {path: '/alterar', label: 'Alterar'},
-                {path: '/', label: 'Inicio'}
             ]}/>
 
             <main>
@@ -42,11 +42,16 @@ export default function Delete() {
                 }
 
                 {loading &&
-                    (<div className="cine-modal-screen cine-screen">
-                        <img
-                            src="https://media1.tenor.com/m/bv2FLcMKT6MAAAAC/look-out-window-tired.gif"
-                        />
-                    </div>)
+                    (
+                        <section className='home-header'>
+                            <p className="retro-subtitle">"Você não precisa ver a identificação dele." <br/> "Estes não são os droides que você está procurando."</p>
+                        <div className="cine-modal-screen cine-screen">
+                            <img
+                                src="https://media1.tenor.com/m/_d97b4Dz3moAAAAC/you-will-watch-the-clone-wars-series.gif"
+                            />
+                        </div>
+                        </section>
+                    )
                 }
 
                 <TableMovies

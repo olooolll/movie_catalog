@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { getMovies } from '@/utils/api.js';
 import NavLink from "@/components/navLink/NavLink.jsx";
 import './Home.css';
+import {useNavigate} from "react-router-dom";
 
 export default function Home() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         async function loadMovies() {
             try {
-                const response = await getMovies();
+                const res = await getMovies();
 
-                if (response.status === 200) {
-                    setMovies(response.data);
+                if (res.status === 200) {
+                    setMovies(res.data);
                     setLoading(false);
                 }
+                console.log(res);
             } catch (error) {
                 console.error('Erro ao carregar filmes:', error);
             }
@@ -38,7 +42,12 @@ export default function Home() {
 
                 <div className="home-header">
                     <h1 className="retro-title">Cine Retrô</h1>
-                    <p className="retro-subtitle">Selecione um título para começar</p>
+                    {
+                        loading ?
+                            (<p className="retro-subtitle">"Eu não tive a intenção de atirar nele, a arma disparou sozinha, eu não sei por quê!"</p>)
+                            :
+                            (<p className="retro-subtitle">Selecione um título para começar</p>)
+                    }
                 </div>
 
                 {
@@ -53,7 +62,7 @@ export default function Home() {
 
                             <section className="movie-grid">
                                 {movies.map((movie, index) => (
-                                    <article key={index} className="movie-card">
+                                    <article key={index} className="movie-card" onClick={() => navigate('filme/'+movie.id)}>
                                         <div className="poster-wrapper">
                                             <img src={movie.imagem} alt={movie.nome} />
                                             <div className="badge-year">{movie.ano}</div>

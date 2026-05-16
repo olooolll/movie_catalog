@@ -36,9 +36,9 @@ export default function Alter() {
     return (
         <>
             <NavLink pages={[
+                {path: '/deletar', label: 'Deletar'},
                 {path: '/', label: 'Inicio'},
-                {path: '/criar', label: 'Criar'},
-                {path: '/deletar', label: 'Deletar'}
+                {path: '/criar', label: 'Criar'}
             ]}/>
 
             <main>
@@ -52,11 +52,19 @@ export default function Alter() {
                 }
 
                 {loading &&
-                    (<div className="cine-modal-screen cine-screen">
-                        <img
-                            src="https://media1.tenor.com/m/4BV0r_fdQBoAAAAd/travis-bickle-cinema.gif"
-                        />
-                    </div>)
+
+                    (
+
+                        <section className='home-header'>
+                            <p className="retro-subtitle">"A solidão me seguiu por toda a minha vida. Em todos os lugares. Em bares, em carros, calçadas, lojas... em todos os lugares. Não há saída. Eu sou o homem solitário de Deus."</p>
+                            <br/>
+                            <div className="cine-modal-screen cine-screen">
+                                <img
+                                    src="https://media1.tenor.com/m/4BV0r_fdQBoAAAAd/travis-bickle-cinema.gif"
+                                />
+                            </div>
+                        </section>
+                        )
                 }
 
                 {!modalOpen &&

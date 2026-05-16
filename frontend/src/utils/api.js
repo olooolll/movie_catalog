@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {convertPostgresByteaToBase64} from "@/utils/imageTransform.js";
 
 const URL = 'https://cscucbpgxmrtmwdrojgl.supabase.co';
 const KEY = 'sb_publishable_etfQv3OVHIqr8U3hEviBXA_hru_1hJE';
@@ -16,29 +17,23 @@ export async function getMovies() {
         );
 
         const processedData = res.data.map((movie) => {
-            try {
-                let rawHex = movie.imagem.replace(/^\\x/, '');
-
-                let hexString = "";
-                for (let i = 0; i < rawHex.length; i += 2) {
-                    hexString += String.fromCharCode(parseInt(rawHex.substr(i, 2), 16));
-                }
-
-                let binary = "";
-                for (let i = 0; i < hexString.length; i += 2) {
-                    binary += String.fromCharCode(parseInt(hexString.substr(i, 2), 16));
-                }
-
-                movie.imagem = `data:image/png;base64,${btoa(binary)}`;
-            } catch (err) {
-                movie.imagem = null;
-            }
-            return movie;
+            return {
+                ...movie,
+                imagem: convertPostgresByteaToBase64(movie.imagem)
+            };
         });
 
+
+        if(res.status === 200 && res.data.length > 0) {
+            return {
+                status: res.status,
+                data: processedData
+            };
+        }
+
         return {
-            status: res.status,
-            data: processedData
+            status: 404,
+            data: { 'error': 'Not Found' }
         };
 
     } catch (err) {
@@ -70,12 +65,27 @@ export async function getMovie(movieId, withImg = true) {
         }
     );
 
-    if (res.status === 200) {
+    if (res.status === 200 && res.data.length > 0) {
 
+        const processedData = res.data.map((movie) => {
+            return {
+                ...movie,
+                imagem: convertPostgresByteaToBase64(movie.imagem)
+            };
+        });
+
+        if (withImg) {
+
+            return {
+                status: 200,
+                data: processedData[0]
+            }
+        }
         return {
             status: 200,
             data: res.data[0]
         };
+
     }
 
     return {
@@ -86,8 +96,6 @@ export async function getMovie(movieId, withImg = true) {
 
 export async function setMovie(movie){
     try{
-        //movie.imagem
-
         const res = await axios.post(
             `${URL}/rest/v1/movies`,
             movie,

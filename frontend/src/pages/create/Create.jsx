@@ -24,18 +24,12 @@ export default function Create(props) {
     return (
         <>
             <NavLink pages={[
-                {path: '/', label: 'Inicio'},
                 {path: '/alterar', label: 'Alterar'},
-                {path: '/deletar', label: 'Deletar'}
+                {path: '/deletar', label: 'Deletar'},
+                {path: '/', label: 'Inicio'}
             ]}/>
 
             <main>
-
-                <div className="cine-modal-screen cine-screen">
-                    <img
-                        src="https://media.tenor.com/W5SYj30r3JkAAAAM/american-psycho.gif"
-                    />
-                </div>
 
                 <Form
                     onSubmit={submit}
