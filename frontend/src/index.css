@@ -1,77 +1,465 @@
 /* 1. Variáveis do Tema (Cinema Retrô) */
 :root {
     --cine-black: #1a1a1a;
+    --cine-black-deep: #050505;
+    --cine-screen-black: #000;
+    --cine-panel: #222;
+    --cine-panel-soft: #2a2a2a;
+    --cine-panel-muted: #333;
+    --cine-border: #444;
     --curtain-red: #8b0000;
+    --curtain-red-bright: #b30000;
     --popcorn-yellow: #f4c430;
     --film-grain-white: #e5e5e5;
+    --film-grain-muted: rgba(229, 229, 229, 0.4);
+    --film-disabled: #666;
     --neon-blue: #00f3ff;
+    --cine-font-body: 'Courier New', Courier, monospace;
+    --cine-font-display: 'Arial Black', sans-serif;
+    --cine-transition: all 0.3s ease;
+    --cine-backdrop-soft: rgba(0, 0, 0, 0.8);
+    --cine-backdrop-strong: rgba(0, 0, 0, 0.9);
+    --cine-shadow-soft: 0 0 30px rgba(0, 0, 0, 0.5);
+    --cine-shadow-strong: 0 0 40px rgba(0, 0, 0, 0.85);
+    --cine-shadow-nav: 0 5px 15px rgba(0, 0, 0, 0.8);
+    --cine-shadow-inset-screen: inset 0 0 20px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 0.5);
+    --cine-glow-input: 0 0 10px rgba(244, 196, 48, 0.2);
+    --cine-glow-yellow: 0 0 15px rgba(244, 196, 48, 0.4);
+    --cine-glow-red: 0 0 15px rgba(139, 0, 0, 0.6);
+    --cine-shadow-red: 8px 8px 0 var(--curtain-red);
 }
 
-/* 2. Reset e Fundo */
+/* 2. Base */
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--cine-black) !important;
     color: var(--film-grain-white) !important;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--cine-font-body);
     margin: 0;
     overflow-x: hidden;
 }
 
-/* 3. Tipografia Estilo Letreiro */
-h1, h2, h3, .display-3, .card-title {
-    font-family: 'Arial Black', sans-serif !important;
+button,
+input {
+    font: inherit;
+}
+
+button,
+label {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* 3. Tipografia */
+h1,
+h2,
+h3,
+.display-3,
+.card-title,
+.cine-title {
+    font-family: var(--cine-font-display) !important;
     text-transform: uppercase;
     color: var(--popcorn-yellow) !important;
-    text-shadow: 3px 3px 0px var(--curtain-red);
+    text-shadow: 3px 3px 0 var(--curtain-red);
     letter-spacing: 2px;
 }
 
-/* 4. Customização de Componentes Bootstrap */
+/* 4. Classes reutilizáveis */
+.cine-button,
+.cine-modal-close,
+.cine-submit-button,
+.btn-outline-secondary,
+.btn-rewind,
+td button {
+    background-color: transparent;
+    color: var(--popcorn-yellow);
+    border: 1px solid var(--popcorn-yellow);
+    padding: 5px 15px;
+    text-transform: uppercase;
+    font-family: var(--cine-font-body);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--cine-transition);
+}
 
-/* Botões Retrô */
-.btn-outline-secondary {
-    color: var(--popcorn-yellow) !important;
-    border: 2px solid var(--popcorn-yellow) !important;
-    border-radius: 0 !important;
+.cine-button:hover,
+.cine-modal-close:hover,
+.cine-submit-button:hover,
+.btn-outline-secondary:hover,
+.btn-rewind:hover,
+td button:hover {
+    background-color: var(--popcorn-yellow);
+    color: var(--cine-screen-black);
+    box-shadow: var(--cine-glow-yellow);
+}
+
+.cine-button:active,
+.cine-modal-close:active,
+.cine-submit-button:active,
+.btn-outline-secondary:active,
+.btn-rewind:active,
+td button:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+.cine-input,
+.retro-input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    background-color: var(--cine-panel-soft);
+    color: var(--popcorn-yellow);
+    font-family: var(--cine-font-body);
+    font-size: 1rem;
+    border: 2px solid var(--cine-border);
+    border-radius: 0;
+    outline: none;
+    transition: var(--cine-transition);
+}
+
+.cine-input:focus,
+.retro-input:focus {
+    border-color: var(--popcorn-yellow);
+    background-color: var(--cine-panel-muted);
+    box-shadow: var(--cine-glow-input);
+}
+
+.cine-input::placeholder,
+.retro-input::placeholder {
+    color: var(--film-grain-white);
+    opacity: 0.4;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.cine-input:disabled,
+.retro-input:disabled {
+    background-color: var(--cine-black);
+    color: var(--film-disabled);
+    border-color: var(--cine-panel);
+    cursor: not-allowed;
+}
+
+.cine-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--cine-black);
+    border: 3px solid var(--cine-panel);
+    box-shadow: 15px 15px 0 var(--curtain-red);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cine-form::before {
+    display: block;
+    text-align: center;
+    font-family: var(--cine-font-body);
+    font-weight: bold;
+    color: var(--popcorn-yellow);
+    border-bottom: 2px dashed var(--cine-border);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.cine-form > * {
+    width: 100%;
+}
+
+.cine-submit-button {
+    margin-top: 20px;
+    padding: 15px;
+    color: var(--curtain-red-bright);
+    border-color: var(--curtain-red-bright);
+    font-family: var(--cine-font-display);
+    font-size: 1rem;
+    border-width: 2px;
+}
+
+.cine-submit-button:hover {
+    background-color: var(--curtain-red-bright);
+    color: var(--film-grain-white);
+    box-shadow: var(--cine-glow-red);
+}
+
+.cine-file-upload,
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: var(--cine-panel);
+    color: var(--popcorn-yellow);
+    border: 2px dashed var(--popcorn-yellow);
+    font-family: var(--cine-font-body);
     font-weight: bold;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: var(--cine-transition);
+    letter-spacing: 1px;
+}
+
+.cine-file-upload:hover,
+.custom-file-upload:hover {
+    background-color: var(--curtain-red);
+    color: var(--film-grain-white);
+    border-style: solid;
+    box-shadow: var(--cine-glow-red);
+    transform: scale(1.02);
+}
+
+.cine-file-upload:active,
+.custom-file-upload:active {
+    transform: scale(0.98);
+}
+
+.cine-table {
+    width: 70%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: auto;
+    font-family: var(--cine-font-body);
+}
+
+.cine-table thead tr {
+    background-color: var(--curtain-red);
+}
+
+.cine-table th {
+    padding: 15px;
+    color: var(--film-grain-white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-align: center;
+    border-bottom: 3px solid var(--popcorn-yellow);
+}
+
+.cine-table tbody tr {
+    background-color: var(--cine-panel);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cine-table tbody tr:hover {
+    background-color: var(--cine-panel-soft);
+    transform: scale(1.01);
+}
+
+.cine-table td {
+    padding: 12px;
+    color: var(--film-grain-white);
+    text-align: center;
+    border-top: 1px solid var(--cine-panel-muted);
+    border-bottom: 1px solid var(--cine-panel-muted);
+}
+
+.cine-table td img {
+    border: 2px solid var(--popcorn-yellow);
+    object-fit: cover;
+    aspect-ratio: 2/3;
+    height: 60px;
+    width: auto;
+}
+
+.cine-table td:first-child,
+.cine-table th:first-child {
+    border-left: 4px solid var(--popcorn-yellow);
+}
+
+.btn-outline-secondary {
+    border-width: 2px !important;
+    border-radius: 0 !important;
 }
 
 .btn-outline-secondary:hover {
-    background-color: var(--popcorn-yellow) !important;
     color: var(--cine-black) !important;
-    box-shadow: 4px 4px 0px var(--neon-blue);
+    box-shadow: 4px 4px 0 var(--neon-blue);
     transform: translate(-2px, -2px);
 }
 
-/* Cards (Cartazes) */
+.cine-card,
 .card {
-    background-color: #222 !important;
-    border: 1px solid #333 !important;
+    background-color: var(--cine-panel) !important;
+    border: 1px solid var(--cine-panel-muted) !important;
     border-radius: 0 !important;
     transition: transform 0.3s ease;
 }
 
+.cine-card:hover,
 .card:hover {
     transform: scale(1.02);
     border-color: var(--popcorn-yellow) !important;
-    box-shadow: 0 0 15px rgba(244, 196, 48, 0.3) !important;
+    box-shadow: var(--cine-glow-yellow) !important;
 }
 
+.cine-poster-img,
 .card-img-top {
     border-radius: 0 !important;
     filter: sepia(30%) contrast(110%);
     border-bottom: 4px solid var(--curtain-red);
 }
 
-/* Badge (Etiqueta de Gênero) */
+.cine-badge,
 .badge.bg-secondary {
     background-color: var(--curtain-red) !important;
     border-radius: 0;
     font-weight: normal;
 }
 
-/* 5. Efeito de Interferência de TV/Filme (Overlay) */
+.cine-panel-frame {
+    background-color: var(--cine-black);
+    border: 3px solid var(--cine-panel);
+    box-shadow: 15px 15px 0 var(--curtain-red);
+}
+
+.cine-screen {
+    background: var(--cine-screen-black);
+    border: 8px solid var(--cine-panel);
+    box-shadow: var(--cine-shadow-inset-screen);
+    overflow: hidden;
+}
+
+.cine-dialog {
+    border: none;
+    background-color: var(--cine-black);
+    box-shadow: var(--cine-shadow-strong);
+}
+
+.cine-dialog::backdrop {
+    background-color: var(--cine-backdrop-strong);
+    backdrop-filter: blur(6px);
+}
+
+.cine-modal {
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    overflow: hidden;
+    background-color: var(--cine-black);
+    border: 5px solid var(--cine-panel);
+    box-shadow: var(--cine-shadow-red);
+}
+
+.cine-modal-header {
+    display: flex;
+    justify-content: center;
+    padding: 18px 25px;
+    background-color: var(--cine-screen-black);
+    border-bottom: 4px solid var(--curtain-red);
+}
+
+.cine-modal-close {
+    border-width: 2px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    min-width: 140px;
+}
+
+.cine-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 25px 28px;
+    text-align: center;
+}
+
+.cine-modal .cine-form {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.cine-modal .cine-form::before {
+    display: none;
+}
+
+.cine-modal .cine-submit-button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cine-modal-eyebrow {
+    font-family: var(--cine-font-display);
+    color: var(--popcorn-yellow);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 2px dashed var(--cine-border);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.cine-modal-title {
+    font-family: var(--cine-font-display) !important;
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    color: var(--popcorn-yellow) !important;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 25px;
+    text-align: center;
+    text-shadow: 3px 3px 0 var(--curtain-red);
+    letter-spacing: 1px;
+}
+
+.cine-modal-screen {
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px;
+}
+
+.cine-modal-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(35%) contrast(1.1) brightness(0.9);
+}
+
+.cine-modal-action {
+    width: 100%;
+    padding: 16px;
+    font-family: var(--cine-font-display);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: var(--cine-transition);
+}
+
+.cine-modal-action--danger {
+    background-color: var(--cine-screen-black);
+    color: var(--film-grain-white);
+    border: none;
+    border-top: 4px solid var(--curtain-red);
+}
+
+.cine-modal-action--danger:hover {
+    background-color: var(--curtain-red);
+    color: var(--popcorn-yellow);
+    letter-spacing: 4px;
+}
+
+/* 5. Efeito de interferência */
 body::after {
     content: "";
     position: fixed;
@@ -90,20 +478,7 @@ body::after {
     opacity: 0.6;
 }
 
-/* Linha divisória */
 hr {
     border-top: 2px dashed var(--popcorn-yellow) !important;
     opacity: 0.5;
-}
-
-.defaultButton {
-    background-color: transparent;
-    color: var(--neon-blue, #1cdce4);
-    border: 1px solid var(--neon-blue, #1cdce4);
-    padding: 5px 15px;
-    text-transform: uppercase;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
 }

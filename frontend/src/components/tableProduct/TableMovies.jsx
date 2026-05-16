@@ -1,5 +1,5 @@
 import {getMovies} from '@/utils/api.js';
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import './TableMovies.css'
 
 export default function TableMovies(props) {
@@ -24,7 +24,7 @@ export default function TableMovies(props) {
 
 
     return (
-        <table>
+        <table className="cine-table">
             <thead>
                 <tr>
                     {columns.map((colName, index) => (

@@ -8,26 +8,26 @@
 }
 
 .nav-marquee {
-    background: #111;
-    border-top: 4px solid var(--curtain-red, #8b0000);
-    border-bottom: 4px solid var(--curtain-red, #8b0000);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    background: var(--cine-black-deep);
+    border-top: 4px solid var(--curtain-red);
+    border-bottom: 4px solid var(--curtain-red);
+    box-shadow: var(--cine-shadow-nav);
     margin-bottom: 2rem;
     width: 100%;
 }
 
 .marquee-btn {
-    background-color: #222;
-    color: var(--popcorn-yellow, #f4c430);
-    border: 3px solid #444;
+    background-color: var(--cine-panel);
+    color: var(--popcorn-yellow);
+    border: 3px solid var(--cine-border);
     padding: 10px 25px;
-    font-family: 'Arial Black', sans-serif;
+    font-family: var(--cine-font-display);
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 2px;
     cursor: pointer;
     position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--cine-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,9 +37,9 @@
 .dot-light {
     width: 6px;
     height: 6px;
-    background-color: var(--popcorn-yellow, #f4c430);
+    background-color: var(--popcorn-yellow);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--popcorn-yellow, #f4c430);
+    box-shadow: 0 0 8px var(--popcorn-yellow);
     display: inline-block;
     animation: blink 1s infinite alternate;
 }
@@ -49,17 +49,17 @@
 }
 
 .marquee-btn:hover {
-    background-color: var(--popcorn-yellow, #f4c430);
-    color: #000;
-    border-color: #fff;
-    box-shadow: 0 0 25px var(--popcorn-yellow, #f4c430);
-    transform: scale(1.1); /* Um pouco mais de destaque */
+    background-color: var(--popcorn-yellow);
+    color: var(--cine-screen-black);
+    border-color: var(--film-grain-white);
+    box-shadow: 0 0 25px var(--popcorn-yellow);
+    transform: scale(1.1);
 }
 
 .marquee-btn:hover .dot-light {
-    background-color: #000;
+    background-color: var(--cine-screen-black);
     box-shadow: none;
-    animation: none; /* Para de piscar quando o botão está acesso */
+    animation: none;
 }
 
 @keyframes blink {

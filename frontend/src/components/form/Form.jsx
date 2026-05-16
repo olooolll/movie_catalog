@@ -1,5 +1,4 @@
 import { useState, Children, cloneElement } from 'react';
-import './Form.css';
 
 export default function Form(props) {
     const [form, setForm] = useState(props.initialState);
@@ -18,7 +17,7 @@ export default function Form(props) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="cine-form" onSubmit={handleSubmit}>
 
             {
                 Children.map(props.children, child => {
@@ -29,7 +28,7 @@ export default function Form(props) {
                 })
             }
 
-            <button type='submit'>
+            <button className="cine-submit-button" type='submit'>
                 {props.submitPlaceHolder}
             </button>
 

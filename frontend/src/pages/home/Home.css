@@ -1,7 +1,6 @@
-/* Container Principal - Ocupa quase toda a largura */
 .home-container {
     width: 95%;
-    max-width: 1600px; /* Aumentado para imagens maiores */
+    max-width: 1600px;
     margin: 0 auto;
     padding-bottom: 50px;
 }
@@ -39,17 +38,17 @@
 /* Moldura e Imagem */
 .poster-wrapper {
     position: relative;
-    border: 5px solid #222;
+    border: 5px solid var(--cine-panel);
     aspect-ratio: 2 / 3;
     overflow: hidden;
-    background: #000;
-    box-shadow: 8px 8px 0 var(--curtain-red);
+    background: var(--cine-screen-black);
+    box-shadow: var(--cine-shadow-red);
 }
 
 .poster-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
@@ -59,7 +58,7 @@
     top: 10px;
     left: 10px;
     background: var(--curtain-red);
-    color: #fff;
+    color: var(--film-grain-white);
     padding: 2px 8px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -86,7 +85,6 @@
     opacity: 0.8;
 }
 
-/* Efeitos de Hover */
 .movie-card:hover {
     transform: scale(1.03);
 }

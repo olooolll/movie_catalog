@@ -30,6 +30,11 @@ export default function Create(props) {
 
             <main>
 
+                <div className="cine-modal-screen cine-screen">
+                    <img
+                        src="https://media.tenor.com/W5SYj30r3JkAAAAM/american-psycho.gif"
+                    />
+                </div>
 
                 <Form
                     onSubmit={submit}
@@ -62,6 +67,7 @@ export default function Create(props) {
                     />
 
                 </Form>
+
 
             </main>
         </>

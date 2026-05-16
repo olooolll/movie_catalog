@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import Form from '@/components/form/Form.jsx'
 import InputValues from '@/components/inputValues/InputValues.jsx';
 import InputImage from '@/components/inputImage/InputImage.jsx';
@@ -19,42 +19,59 @@ export default function ModalAlter(props) {
 
 
     return (
-        <dialog ref={dialogRef} className="ModalAlter">
-            <button className='defaultButton' onClick={() => closeModal()}>Fechar X</button>
-            <Form
-                onSubmit={props.submit}
-                initialState={{
-                    id: props.movie.id,
-                    nome: props.movie.nome,
-                    genero: props.movie.genero,
-                    ano: props.movie.ano,
-                    imagem: props.movie.imagem
-                }}
-                submitPlaceHolder='Confirmar'
-            >
+        <dialog ref={dialogRef} className="modal-alter cine-modal cine-dialog">
+            <header className="cine-modal-header">
+                <button className="cine-modal-close" onClick={() => closeModal()}>
+                    &#x25C0;&#x25C0; FECHAR
+                </button>
+            </header>
 
-                <InputValues
-                    field='nome'
-                    placeholder='Nome'
-                />
+            <div className="cine-modal-body">
+                <h2 className="cine-modal-title">
+                    ALTERAR DADOS DO FILME
+                </h2>
 
-                <InputValues
-                    field='genero'
-                    placeholder='Genero'
-                />
+                <div className="cine-modal-screen cine-screen">
+                    <img
+                        src="https://media.tenor.com/Awo746nXjxsAAAAM/edward-norton-fight.gif"
+                    />
+                </div>
 
-                <InputValues
-                    field='ano'
-                    placeholder='Ano'
-                />
+                <br/>
 
-                <InputImage
-                    field='imagem'
-                />
+                <Form
+                    onSubmit={props.submit}
+                    initialState={{
+                        id: props.movie.id,
+                        nome: props.movie.nome,
+                        genero: props.movie.genero,
+                        ano: props.movie.ano,
+                        imagem: props.movie.imagem
+                    }}
+                    submitPlaceHolder='Confirmar'
+                >
 
-            </Form>
+                    <InputValues
+                        field='nome'
+                        placeholder='Nome'
+                    />
 
+                    <InputValues
+                        field='genero'
+                        placeholder='Genero'
+                    />
 
+                    <InputValues
+                        field='ano'
+                        placeholder='Ano'
+                    />
+
+                    <InputImage
+                        field='imagem'
+                    />
+
+                </Form>
+            </div>
         </dialog>
     )
 

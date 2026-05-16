@@ -1,6 +1,3 @@
-import React from 'react';
-import './InputValues.css'; // Importação do CSS
-
 export default function InputValues(props) {
     return (
         <input

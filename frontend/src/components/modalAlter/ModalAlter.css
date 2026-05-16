@@ -1,29 +1,15 @@
-dialog {
-    position: fixed;
-    border: none;
-    background: transparent;
+.modal-alter .cine-modal-body {
+    justify-content: center;
 }
 
-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 9999;
+.modal-alter .cine-form {
+    text-align: left;
 }
 
-.closed-button {
-    background-color: transparent;
-    color: var(--popcorn-yellow, #f4c430);
-    border: 1px solid var(--popcorn-yellow, #f4c430);
-    padding: 5px 15px;
-    text-transform: uppercase;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
+.modal-alter .cine-modal-title {
+    margin-bottom: 20px;
 }
 
-.closed-button:hover {
-    background-color: var(--popcorn-yellow, #f4c430);
-    color: #000;
-    box-shadow: 0 0 10px rgba(244, 196, 48, 0.4);
+.modal-alter .file-upload-wrapper {
+    margin-bottom: 0;
 }

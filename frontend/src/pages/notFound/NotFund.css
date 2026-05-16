@@ -1,45 +1,37 @@
-/* notfound.css */
-
-/* Container Principal */
 .not-found-container {
-    background: radial-gradient(circle, #1a1a1a 0%, #050505 100%);
+    background: radial-gradient(circle, var(--cine-black) 0%, var(--cine-black-deep) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #e5e5e5;
+    color: var(--film-grain-white);
     padding: 20px;
 }
 
-/* Título 404 com Efeito Glitch (Cores de Fita VHS) */
 .glitch-404 {
     font-size: clamp(5rem, 15vw, 10rem);
-    font-family: 'Arial Black', sans-serif;
-    color: #f4c430; /* Amarelo Pipoca */
-    text-shadow: 3px 0 #00f3ff, -3px 0 #8b0000;
+    font-family: var(--cine-font-display);
+    color: var(--popcorn-yellow);
+    text-shadow: 3px 0 var(--neon-blue), -3px 0 var(--curtain-red);
     margin: 0;
     line-height: 1;
     animation: glitch-anim 3s infinite linear alternate-reverse;
 }
 
-/* Subtítulo Estilo Créditos */
 .not-found-container h2 {
     text-transform: uppercase;
     letter-spacing: 5px;
     margin-bottom: 2rem;
     font-size: 1.5rem;
-    color: #8b0000; /* Vermelho Cortina */
+    color: var(--curtain-red);
 }
 
-/* Moldura da Imagem (Simulando uma tela de TV antiga) */
 .image-wrapper {
-    background: #000;
-    border: 8px solid #222;
     border-radius: 4px;
     padding: 15px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    box-shadow: var(--cine-shadow-soft);
     margin-bottom: 2rem;
 }
 
@@ -48,23 +40,22 @@
     animation: flicker 0.15s infinite;
 }
 
-/* Botão Rebobinar */
 .btn-rewind {
     background: transparent;
-    color: #f4c430;
-    border: 2px solid #f4c430;
+    color: var(--popcorn-yellow);
+    border: 2px solid var(--popcorn-yellow);
     padding: 10px 30px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Courier New', monospace;
+    transition: var(--cine-transition);
+    font-family: var(--cine-font-body);
 }
 
 .btn-rewind:hover {
-    background: #f4c430;
-    color: #1a1a1a;
-    box-shadow: 0 0 15px #f4c430;
+    background: var(--popcorn-yellow);
+    color: var(--cine-black);
+    box-shadow: 0 0 15px var(--popcorn-yellow);
     transform: translateY(-3px);
 }
 
