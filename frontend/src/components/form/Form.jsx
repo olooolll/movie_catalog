@@ -12,8 +12,8 @@ export default function Form(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         props.onSubmit(form);
+        setForm(props.initialState)
     };
 
     return (

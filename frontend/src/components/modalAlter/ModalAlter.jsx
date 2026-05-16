@@ -31,14 +31,6 @@ export default function ModalAlter(props) {
                     ALTERAR DADOS DO FILME
                 </h2>
 
-                <div className="cine-modal-screen cine-screen">
-                    <img
-                        src="https://media.tenor.com/Awo746nXjxsAAAAM/edward-norton-fight.gif"
-                    />
-                </div>
-
-                <br/>
-
                 <Form
                     onSubmit={props.submit}
                     initialState={{

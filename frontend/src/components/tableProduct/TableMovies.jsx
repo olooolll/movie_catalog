@@ -7,9 +7,12 @@ export default function TableMovies(props) {
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
+        props.isLoading(true);
         async function loadMovies() {
             const res = await getMovies();
             if (res.status === 200) {
+                props.isLoading(false);
+
                 setMovies(res.data);
 
                 if (res.data.length > 0) {

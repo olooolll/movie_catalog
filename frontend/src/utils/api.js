@@ -86,6 +86,7 @@ export async function getMovie(movieId, withImg = true) {
 
 export async function setMovie(movie){
     try{
+        //movie.imagem
 
         const res = await axios.post(
             `${URL}/rest/v1/movies`,

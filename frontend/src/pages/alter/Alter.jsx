@@ -7,6 +7,7 @@ import {getMovie, setMovie, updateMovie} from '@/utils/api.js';
 export default function Alter() {
     const [movieSelected, setMovieSelected] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     async function selectMovie(id){
         const res = await getMovie(id, false);
@@ -50,11 +51,20 @@ export default function Alter() {
                     />
                 }
 
+                {loading &&
+                    (<div className="cine-modal-screen cine-screen">
+                        <img
+                            src="https://media1.tenor.com/m/4BV0r_fdQBoAAAAd/travis-bickle-cinema.gif"
+                        />
+                    </div>)
+                }
+
                 {!modalOpen &&
                     <TableMovies
                         header='Opção'
                         body='Alterar'
                         selectMovie={selectMovie}
+                        isLoading={setLoading}
                     />
                 }
 

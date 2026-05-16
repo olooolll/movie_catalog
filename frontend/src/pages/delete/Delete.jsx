@@ -1,12 +1,13 @@
 import {deleteMovie, getMovie} from '@/utils/api.js';
 import NavLink from '@/components/navLink/NavLink.jsx';
 import TableMovies from '@/components/tableProduct/TableMovies.jsx';
-import {useState} from "react";
+import React, {useState} from "react";
 import ModalDelete from "@/components/modalDelete/ModalDelete.jsx";
 
 export default function Delete() {
     const [modalOpen, setModalOpen] = useState(false);
     const [movie, setMovie] = useState({});
+    const [loading, setLoading] = useState(false);
 
     async function selectMovie(id){
         setModalOpen(true);
@@ -40,10 +41,19 @@ export default function Delete() {
                     />
                 }
 
+                {loading &&
+                    (<div className="cine-modal-screen cine-screen">
+                        <img
+                            src="https://media1.tenor.com/m/bv2FLcMKT6MAAAAC/look-out-window-tired.gif"
+                        />
+                    </div>)
+                }
+
                 <TableMovies
                     header='Opção'
                     body='Deletar'
                     selectMovie={selectMovie}
+                    isLoading={setLoading}
                     />
 
             </main>

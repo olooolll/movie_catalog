@@ -17,6 +17,7 @@ export default function Create(props) {
             }
         }
         const res = await setMovie(movie)
+
     }
 
 
