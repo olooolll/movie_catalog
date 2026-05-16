@@ -2,9 +2,9 @@ import React, {useEffect, useRef} from 'react';
 import Form from '@/components/form/Form.jsx'
 import InputValues from '@/components/inputValues/InputValues.jsx';
 import InputImage from '@/components/inputImage/InputImage.jsx';
-import './AlterData.css'
+import './ModalAlter.css'
 
-export default function AlterData(props) {
+export default function ModalAlter(props) {
     const dialogRef = useRef(null);
 
     useEffect(() => {
@@ -13,10 +13,14 @@ export default function AlterData(props) {
         }
     }, []);
 
+    function closeModal() {
+        props.status(false)
+    }
+
 
     return (
-        <dialog ref={dialogRef}>
-            <button onClick={() => dialogRef.current.close()}>Fechar X</button>
+        <dialog ref={dialogRef} className="ModalAlter">
+            <button className='defaultButton' onClick={() => closeModal()}>Fechar X</button>
             <Form
                 onSubmit={props.submit}
                 initialState={{

@@ -140,19 +140,21 @@ export async function deleteMovie(movieId){
 
 export async function updateMovie(movie) {
 
+    const data = {
+        nome: movie.nome,
+        genero: movie.genero,
+        ano: movie.ano,
+    };
+
+    if (movie.imagem != null) {
+        data.imagem = movie.imagem;
+    }
+
     try {
 
         const res = await axios.patch(
-
             `${URL}/rest/v1/movies`,
-
-            {
-                nome: movie.nome,
-                genero: movie.genero,
-                ano: movie.ano,
-                imagem: movie.imagem
-            },
-
+            data,
             {
                 headers: {
                     apikey: KEY,
@@ -167,8 +169,6 @@ export async function updateMovie(movie) {
             }
         );
 
-        console.log(res.data);
-        console.log(movie);
         return {
             status: res.status,
             data: res.data
@@ -176,7 +176,7 @@ export async function updateMovie(movie) {
 
     } catch (err) {
 
-        console.log(err);
+        console.log(err.response?.data || err);
 
         return {
             status: 412,

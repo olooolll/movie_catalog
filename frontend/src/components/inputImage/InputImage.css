@@ -3,12 +3,10 @@
     text-align: center;
 }
 
-/* Esconde o input original feio */
 input[type="file"] {
     display: none;
 }
 
-/* Estiliza o Label como se fosse o botão */
 .custom-file-upload {
     display: inline-block;
     padding: 12px 24px;
@@ -28,7 +26,6 @@ input[type="file"] {
     font-size: 1.2rem;
 }
 
-/* Efeito de Hover - Brilho de Neon */
 .custom-file-upload:hover {
     background-color: var(--curtain-red, #8b0000);
     color: #fff;
@@ -37,7 +34,6 @@ input[type="file"] {
     transform: scale(1.02);
 }
 
-/* Feedback visual quando um arquivo é selecionado (opcional) */
 .custom-file-upload:active {
     transform: scale(0.98);
 }

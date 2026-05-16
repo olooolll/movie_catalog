@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import NavLink from '@/components/navLink/NavLink.jsx'
 import TableMovies from "@/components/tableProduct/TableMovies.jsx";
-import AlterData from "@/components/alterData/AlterData.jsx";
+import ModalAlter from "@/components/modalAlter/ModalAlter.jsx";
 import {getMovie, setMovie, updateMovie} from '@/utils/api.js';
 
 export default function Alter() {
     const [movieSelected, setMovieSelected] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
 
     async function selectMovie(id){
-        const res = await getMovie(id);
+        const res = await getMovie(id, false);
         setMovieSelected(res.data);
+        setModalOpen(true);
     }
-
 
     async function submit(movie){
         for(let data in movie){
+            if(movie.imagem !== null){
+                continue;
+            }
+
             if( movie[data] === '' ||
                 movie[data] === null ||
                 movie[data] === undefined
@@ -24,6 +29,7 @@ export default function Alter() {
             }
         }
         const res = await updateMovie(movie)
+        setModalOpen(false);
     };
 
     return (
@@ -36,18 +42,21 @@ export default function Alter() {
 
             <main>
 
-                {movieSelected &&
-                    <AlterData
+                {modalOpen &&
+                    <ModalAlter
+                        status={setModalOpen}
                         submit={submit}
                         movie={movieSelected}
                     />
                 }
 
-                <TableMovies
-                    header='Opção'
-                    body='Alterar'
-                    selectMovie={selectMovie}
-                />
+                {!modalOpen &&
+                    <TableMovies
+                        header='Opção'
+                        body='Alterar'
+                        selectMovie={selectMovie}
+                    />
+                }
 
             </main>
         </>

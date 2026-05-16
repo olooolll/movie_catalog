@@ -1,16 +1,23 @@
-import { deleteMovie } from '@/utils/api.js';
+import {deleteMovie, getMovie} from '@/utils/api.js';
 import NavLink from '@/components/navLink/NavLink.jsx';
 import TableMovies from '@/components/tableProduct/TableMovies.jsx';
 import {useState} from "react";
+import ModalDelete from "@/components/modalDelete/ModalDelete.jsx";
 
 export default function Delete() {
-    const [movies, setMovies] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movie, setMovie] = useState({});
 
     async function selectMovie(id){
-        const res = await deleteMovie(id);
+        setModalOpen(true);
+        const res = await getMovie(id, false);
+        if (res.status === 200){
+            setMovie(res.data);
+        }
+
+        //const res = await deleteMovie(id);
         if(res.status === 204){
-            setMovies(movies.filter(movie => movie.id !== id))
-            document.getElementById(id).remove();
+            //document.getElementById(id).remove();
         } else{
             //Alert
         }
@@ -25,11 +32,18 @@ export default function Delete() {
 
             <main>
 
+                {modalOpen &&
+                    <ModalDelete
+                        status={setModalOpen}
+                        data={movie}
+                        isConfirmed={deleteMovie}
+                    />
+                }
+
                 <TableMovies
                     header='Opção'
                     body='Deletar'
                     selectMovie={selectMovie}
-                    data={movies}
                     />
 
             </main>
